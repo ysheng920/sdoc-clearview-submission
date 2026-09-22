@@ -1,0 +1,32 @@
+Sender:  senthil.kumar@tamilfreight.com
+Subject: ட்ராஃப்ட் பில் ஆஃப் லேடிங் மற்றும் ஷிப்பிங் இன்ஸ்ட்ரக்ஷன் பற்றி சரிபார்க்கவும்
+
+(received Tue, 16 Apr 2024, 11:48 AM, to ops@sdoc-clearview.com)
+
+Attachments -- upload one of these pairs and set the role:
+  SI  ->  scans/edge_003_SI.pdf        (image-only, takes the VLM path)
+  BL  ->  scans/edge_003_BL.pdf
+  or  ->  attachments/edge_003_SI.txt  (text, takes the label-parser path)
+          attachments/edge_003_BL.txt
+
+===== BODY (everything below this line, verbatim) =====
+வணக்கம்,
+
+இணைப்பில் ட்ராஃப்ட் பில் ஆஃப் லேடிங் (BL) மற்றும் ஷிப்பிங் இன்ஸ்ட்ரக்ஷன் (SI) அனுப்பியுள்ளோம். தயவுசெய்து கீழ்க்கண்ட விவரங்கள் சரியாக உள்ளதா என்று சரிபார்த்து, ஏதேனும் திருத்தங்கள் இருந்தால் உடனடியாக எங்களுக்கு தெரியப்படுத்தவும்.
+
+1. ஷிப்பர் (Shipper) மற்றும் கான்சைனீ (Consignee) பெயர்
+2. லோடிங் துறைமுகம் (Port of Loading) மற்றும் இறக்குமதி துறைமுகம் (Port of Discharge)
+3. கண்டெய்னர் எண்ணிக்கை (Container Count)
+4. மொத்த எடை (Gross Weight)
+5. சரக்கு விவரம் (Description of Goods)
+
+எல்லா விவரங்களும் உறுதிசெய்யப்பட்ட பிறகு, இறுதி BL-ஐ வெளியிடலாம்.
+
+உங்கள் உதவிக்கு நன்றி.
+
+அன்புடன்,
+செந்தில் குமார்
+செயல்பாட்டு நிர்வாகி (Operations Executive)
+தமிழ் ஃப்ரெயிட் லாஜிஸ்டிக்ஸ் பிரைவேட் லிமிடெட்
+தொலைபேசி: +60 12-345 6789
+மின்னஞ்சல்: senthil.kumar@tamilfreight.com

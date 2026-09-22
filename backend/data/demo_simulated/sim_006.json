@@ -1,0 +1,10 @@
+{
+  "email_id": "sim_006",
+  "from": "lin.zhiqiang@greenpalmtrading.com",
+  "subject": "请核对：提单草稿与装运指示（SI）",
+  "body": "各位运营同事，\n\n您好！\n\n我司一票棕榈油出运的提单草稿已收到，现请大家核对附件中的提单草稿（Draft BL）与装运指示（Shipping Instruction, SI）是否一致。\n\n请重点确认以下信息：\n1. 发货人（Shipper）\n2. 收货人（Consignee）\n3. 通知方（Notify Party）\n4. 装货港（Port of Loading）\n5. 卸货港（Port of Discharge）\n6. 柜量（Container Count）\n7. 毛重（Gross Weight）\n\n如有不一致或其他问题，请及时与我联系。\n\n谢谢大家！\n\n林志强\n大洋棕榈贸易有限公司\n物流协调员\n电话：+86 755 8234 5678\n邮箱：lin.zhiqiang@greenpalmtrading.com\n",
+  "attachments": [
+    "simulated/sim_006_BL.pdf",
+    "simulated/sim_006_SI.pdf"
+  ]
+}

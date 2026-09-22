@@ -1,0 +1,38 @@
+提单草稿 / DRAFT BILL OF LADING        (entirely handwritten)
+========================================
+环海航运有限公司 / TRANS OCEAN SHIPPING CO., LTD.
+香港中环干诺道中 168 号 / 168 Connaught Road Central, Hong Kong
+Tel: +852 2856 7890    Website: www.transocean.com
+
+BL No.: TOSHK2404187
+Date: 2024-04-15
+
+发货人 / Shipper: Sunny Export Co., Ltd
+  Rm 1203, No. 88 Huanghai Road; Qingdao, China
+收货人 / Consignee: Global Marine Trading Pte Ltd
+  10 Anson Road, #24-01; Singapore 079903
+通知方 / Notify Party: Bright Way International Ltd.
+  7/F, Tin Shing Commercial Bldg.; Hong Kong
+船名 / 航次 / Vessel / Voyage: CMA CGM PACIFIC / OM132E
+装货港 / Port of Loading: Qingdao, China
+卸货港 / Port of Discharge: Singapore
+最终目的地 / Final Destination: Singapore
+
+Container table:
+  TCLU8263147 | Seal A12345 | 450 pkgs | Plastic household products (Kitchenware) | 24,000 KGS | 68.0 CBM
+  TEMU7942015 | Seal A12346 | 440 pkgs |                                          | 24,100 KGS | 68.0 CBM
+  TGHU3156789 | Seal A12347 | 460 pkgs |                                          | 24,200 KGS | 68.0 CBM
+  TOTAL: 1,350 pkgs | 72,300 KGS | 204.0 CBM
+
+Total Number of Containers (in words): THREE (3) X 40HQ
+Freight and Charges: FREIGHT COLLECT
+Marks & Nos.: N/M
+毛重 / Gross Weight: 72,300 KGS
+
+REMARKS: SAY THREE (3) CONTAINERS ONLY. SHIPPER'S LOAD, COUNT AND SEAL.
+
+Handwritten amendments on this BL:
+  - Row TGHU3156789 gross weight: "24,000" struck through, "24,200" written beside it.
+    After the amendment the three rows sum to 72,300, matching the printed total.
+
+For and on behalf of TRANS OCEAN SHIPPING CO., LTD. -- Authorized Signature

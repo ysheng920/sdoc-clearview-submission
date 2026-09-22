@@ -1,0 +1,34 @@
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# secrets and local state
+.env
+*.db
+# Reset Demo must work from a fresh clone. This frozen, read-only baseline is
+# product seed data; the live backend/*.db files remain local state.
+!backend/data/demo_baseline.db
+
+# node
+node_modules/
+dist/
+*.local
+
+# editors / os
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# archify visual-check evidence (regenerable, ~750KB of PNGs)
+docs/*.visual-check.*
+
+# Rates a reviewer set locally; commit deliberately, not by accident.
+backend/data/model_prices.json
+
+# Hand-written emails made from the Run panel; not part of the labelled corpus.
+backend/data/simulated/
+

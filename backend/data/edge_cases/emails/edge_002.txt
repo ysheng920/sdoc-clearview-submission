@@ -1,0 +1,32 @@
+Sender:  li.wei@sunrise-logistics.com
+Subject: 请协助核对提单草稿与装运指示
+
+(received 2024年4月15日 10:27, to ops@sdoc-clearview.com)
+
+Attachments -- upload one of these pairs and set the role:
+  SI  ->  scans/edge_002_SI.pdf        (image-only, takes the VLM path)
+  BL  ->  scans/edge_002_BL.pdf
+  or  ->  attachments/edge_002_SI.txt  (text, takes the label-parser path)
+          attachments/edge_002_BL.txt
+
+===== BODY (everything below this line, verbatim) =====
+您好，
+
+我们刚收到船公司的提单草稿（Draft BL），现请帮忙对照我们的装运指示书（Shipping Instruction, SI）核对以下关键资料是否一致：
+
+1. 发货人（Shipper）和收货人（Consignee）
+2. 装货港（Port of Loading）和卸货港（Port of Discharge）
+3. 集装箱数量和尺寸
+4. 毛重（Gross Weight）
+5. 货物描述（Description of Goods）
+6. 通知方（Notify Party）
+
+如果有任何不一致的地方，请标记出来并告知我们，以便我们及时向船公司申请修改。
+
+谢谢！
+
+李伟
+国际物流部
+日出国际货运有限公司
+电话：+86 21 6888 1234
+邮箱：li.wei@sunrise-logistics.com

@@ -1,0 +1,34 @@
+BILL OF LADING (DRAFT)
+FOR OCEAN TRANSPORT OR MULTIMODAL TRANSPORT
+========================================
+MAERSK LINE                                               Page 1 of 1
+
+B/L No.: MLKLG2409876
+Date: 14 OCT 2024
+
+Shipper: MERIDIAN PALM TRADING SDN BHD
+  Lot 18, Jalan Perindustrian 3; Port Klang, Selangor, Malaysia
+Consignee: EASTERN GLOBE IMPORTS LLC
+  28 Al Mina Street; Dubai, UAE
+Notify Party: SAME AS CONSIGNEE
+Vessel / Voyage: MAERSK HAMBURG / 221E
+Port of Loading: PORT KLANG, MALAYSIA
+Port of Discharge: JEBEL ALI, UAE
+Final Destination (if on-carriage): DUBAI, UAE
+
+PARTICULARS FURNISHED BY SHIPPER
+Marks and Numbers: N/M
+No. of Containers and Kind of Packages: 4 x 40'HQ
+Description of Goods: REFINED PALM OLEIN packed in cartons on pallets
+Gross Weight (KGS): 22,500
+Measurement (CBM): 67.8
+
+Freight and Charges: FREIGHT COLLECT
+Shipped on Board (Date): TBD
+
+Handwritten amendments on this BL:
+  - No. of Containers: printed "3 x 40'HQ" struck through, "4 x 40'HQ" written beside it.
+  - Margin note beside the container box: "rev 2".
+  - Margin note beside Consignee: "consignee ok" with a tick.
+
+For MAERSK LINE (MALAYSIA) SDN. BHD. (Co. No. 196001000123) -- Authorised Signatory

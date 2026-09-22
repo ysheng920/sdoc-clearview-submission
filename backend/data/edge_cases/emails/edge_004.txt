@@ -1,0 +1,28 @@
+Sender:  olivia.tan@meridianpalm.com
+Subject: Request to Verify Draft BL Against Shipping Instruction – Shipment MP-2109
+
+(received Tue, 14 Oct 2024, 10:24 AM, to ops@sdoc-clearview.com)
+
+Attachments -- upload one of these pairs and set the role:
+  SI  ->  scans/edge_004_SI.pdf        (image-only, takes the VLM path)
+  BL  ->  scans/edge_004_BL.pdf
+  or  ->  attachments/edge_004_SI.txt  (text, takes the label-parser path)
+          attachments/edge_004_BL.txt
+
+===== BODY (everything below this line, verbatim) =====
+Dear Operations Team,
+
+Please review the attached draft Bill of Lading against the Shipping Instruction for shipment MP-2109. Kindly verify the shipper, consignee, notify party, port of loading, port of discharge, container count, and gross weight.
+
+Please let me know if there are any discrepancies before the draft BL is finalized.
+
+Thank you.
+
+Regards,
+Olivia Tan
+Logistics Coordinator
+Meridian Palm Trading Sdn. Bhd.
+
+T: +60 3 3168 2288
+E: olivia.tan@meridianpalm.com
+W: www.meridianpalm.com

@@ -1,0 +1,927 @@
+{
+  "_about": "Expected results for the image-based edge cases. NOT ground truth -- these cases are deliberately excluded from data/ground_truth.json and from the benchmark gate. 'raw' is what a perfect extractor should read off the image, with handwriting taking precedence over a struck-through printed value. 'normalised', 'comparison' and 'status' are produced by running those raws through app/engines/normalize.py and compare.py.",
+  "_fields": [
+    "shipper",
+    "consignee",
+    "notify_party",
+    "port_of_loading",
+    "port_of_discharge",
+    "container_count",
+    "gross_weight_kg"
+  ],
+  "_inputs": {
+    "text_path": "inbox/edge_00N.json -> attachments/*.txt (label parser + LLM fill)",
+    "vlm_path": "inbox/edge_00N_scan.json -> scans/*.pdf, image-only PDFs of the crops. read_text() raises UnreadableDocument on them, so extract() takes the _read_visually() fallback.",
+    "crops": "images/edge_00N_{email,SI,BL}.png -- the panels on their own, for feeding a model directly."
+  },
+  "_known_pipeline_gaps": [
+    "docs.py _LABEL_LINE requires a label to start with [A-Za-z]. Every bilingual label written CJK-first ('发货人 / Shipper:') therefore fails to match, and the deterministic parser returns NOTHING at all for the Chinese and handwritten-bilingual documents (edge_002, 005, 006). Those cases fall through to the model on every field.",
+    "normalize.norm_entity() and norm_port() strip all non-Latin characters, so a value printed only in Chinese normalises to None and is reported absent rather than compared.",
+    "normalize.norm_containers() needs a leading digit, so a count spelled out in words ('THREE (3) X 40HQ', edge_005) normalises to None."
+  ],
+  "cases": {
+    "edge_001": {
+      "image": "images/edge_001_malay_scan.webp",
+      "email": "inbox/edge_001.json",
+      "si_document": "attachments/edge_001_SI.txt",
+      "bl_document": "attachments/edge_001_BL.txt",
+      "si_crop": "images/edge_001_SI.png",
+      "bl_crop": "images/edge_001_BL.png",
+      "email_crop": "images/edge_001_email.png",
+      "email_text": "emails/edge_001.txt",
+      "scan_email": "inbox/edge_001_scan.json",
+      "si_scan": "scans/edge_001_SI.pdf",
+      "bl_scan": "scans/edge_001_BL.pdf",
+      "title": "Malay email, photographed paper -- real container/weight mismatch",
+      "what_makes_it_hard": [
+        "non-English email body (Malay)",
+        "photographed paper: skew, shadow, page curl",
+        "round company chop overlapping printed text",
+        "BL voyage prints as SB0S2 where the SI says SB052 (0/O, 5/S trap)"
+      ],
+      "expected_extraction": {
+        "si": {
+          "shipper": {
+            "raw": "MURNI LOGISTICS SDN BHD",
+            "normalised": "murni logistics",
+            "label_parser": "MURNI LOGISTICS SDN BHD"
+          },
+          "consignee": {
+            "raw": "PT. SENTOSA JAYA ABADI",
+            "normalised": "pt sentosa jaya abadi",
+            "label_parser": "PT. SENTOSA JAYA ABADI"
+          },
+          "notify_party": {
+            "raw": "SAME AS CONSIGNEE",
+            "normalised": "same consignee",
+            "label_parser": "SAME AS CONSIGNEE"
+          },
+          "port_of_loading": {
+            "raw": "PORT KLANG, MALAYSIA",
+            "normalised": "port klang",
+            "label_parser": "PORT KLANG, MALAYSIA"
+          },
+          "port_of_discharge": {
+            "raw": "TANJUNG PRIOK, INDONESIA",
+            "normalised": "tanjung priok",
+            "label_parser": "TANJUNG PRIOK, INDONESIA"
+          },
+          "container_count": {
+            "raw": "3 x 20'GP",
+            "normalised": "3",
+            "label_parser": "3 x 20'GP"
+          },
+          "gross_weight_kg": {
+            "raw": "66,000",
+            "normalised": "66000",
+            "label_parser": "66,000"
+          }
+        },
+        "bl": {
+          "shipper": {
+            "raw": "MURNI LOGISTICS SDN BHD",
+            "normalised": "murni logistics",
+            "label_parser": "MURNI LOGISTICS SDN BHD"
+          },
+          "consignee": {
+            "raw": "PT. SENTOSA JAYA ABADI",
+            "normalised": "pt sentosa jaya abadi",
+            "label_parser": "PT. SENTOSA JAYA ABADI"
+          },
+          "notify_party": {
+            "raw": "SAME AS CONSIGNEE",
+            "normalised": "same consignee",
+            "label_parser": "SAME AS CONSIGNEE"
+          },
+          "port_of_loading": {
+            "raw": "PORT KLANG, MALAYSIA",
+            "normalised": "port klang",
+            "label_parser": "PORT KLANG, MALAYSIA"
+          },
+          "port_of_discharge": {
+            "raw": "TANJUNG PRIOK, INDONESIA",
+            "normalised": "tanjung priok",
+            "label_parser": "TANJUNG PRIOK, INDONESIA"
+          },
+          "container_count": {
+            "raw": "4 x 20'GP",
+            "normalised": "4",
+            "label_parser": "4 x 20'GP"
+          },
+          "gross_weight_kg": {
+            "raw": "88,000 KGS",
+            "normalised": "88000",
+            "label_parser": "88,000"
+          }
+        }
+      },
+      "expected_comparison": {
+        "shipper": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "consignee": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "notify_party": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "port_of_loading": {
+          "status": "MATCH",
+          "rule": "city_name_match"
+        },
+        "port_of_discharge": {
+          "status": "MATCH",
+          "rule": "city_name_match"
+        },
+        "container_count": {
+          "status": "MISMATCH",
+          "rule": "values_differ"
+        },
+        "gross_weight_kg": {
+          "status": "MISMATCH",
+          "rule": "values_differ"
+        }
+      },
+      "expected_row": {
+        "category": "BL_COMPARISON",
+        "status": "MISMATCH",
+        "review_reason": null,
+        "defect_fields": [
+          "container_count",
+          "gross_weight_kg"
+        ],
+        "missing_fields": [],
+        "has_defect": true
+      },
+      "notes": [
+        "The mismatch is real and unambiguous -- nothing is struck through.",
+        "This is the control case: if an extractor fails here, the language or the scan quality is the cause, not the reasoning."
+      ],
+      "known_pipeline_gaps": []
+    },
+    "edge_002": {
+      "image": "images/edge_002_chinese_scan.webp",
+      "email": "inbox/edge_002.json",
+      "si_document": "attachments/edge_002_SI.txt",
+      "bl_document": "attachments/edge_002_BL.txt",
+      "si_crop": "images/edge_002_SI.png",
+      "bl_crop": "images/edge_002_BL.png",
+      "email_crop": "images/edge_002_email.png",
+      "email_text": "emails/edge_002.txt",
+      "scan_email": "inbox/edge_002_scan.json",
+      "si_scan": "scans/edge_002_SI.pdf",
+      "bl_scan": "scans/edge_002_BL.pdf",
+      "title": "Chinese email, bilingual CN/EN forms -- everything agrees",
+      "what_makes_it_hard": [
+        "Chinese email body",
+        "bilingual labels, table nested inside a table",
+        "shipper is printed in Chinese ONLY on both documents",
+        "SI ports are Chinese with the English in brackets; the BL prints English only"
+      ],
+      "expected_extraction": {
+        "si": {
+          "shipper": {
+            "raw": "日出国际货运有限公司",
+            "normalised": null,
+            "label_parser": null
+          },
+          "consignee": {
+            "raw": "GLOBAL TRADING PTE. LTD.",
+            "normalised": "global trading",
+            "label_parser": null
+          },
+          "notify_party": {
+            "raw": "SAME AS CONSIGNEE",
+            "normalised": "same consignee",
+            "label_parser": null
+          },
+          "port_of_loading": {
+            "raw": "上海，中国 (SHANGHAI, CHINA)",
+            "normalised": null,
+            "label_parser": null
+          },
+          "port_of_discharge": {
+            "raw": "新加坡 (SINGAPORE)",
+            "normalised": null,
+            "label_parser": null
+          },
+          "container_count": {
+            "raw": "20 x 40'GP",
+            "normalised": "20",
+            "label_parser": null
+          },
+          "gross_weight_kg": {
+            "raw": "22,000",
+            "normalised": "22000",
+            "label_parser": null
+          }
+        },
+        "bl": {
+          "shipper": {
+            "raw": "日出国际货运有限公司",
+            "normalised": null,
+            "label_parser": "日出国际货运有限公司"
+          },
+          "consignee": {
+            "raw": "GLOBAL TRADING PTE. LTD.",
+            "normalised": "global trading",
+            "label_parser": "GLOBAL TRADING PTE. LTD."
+          },
+          "notify_party": {
+            "raw": "SAME AS CONSIGNEE",
+            "normalised": "same consignee",
+            "label_parser": "SAME AS CONSIGNEE"
+          },
+          "port_of_loading": {
+            "raw": "SHANGHAI, CHINA",
+            "normalised": "shanghai",
+            "label_parser": "SHANGHAI, CHINA"
+          },
+          "port_of_discharge": {
+            "raw": "SINGAPORE",
+            "normalised": "singapore",
+            "label_parser": "SINGAPORE"
+          },
+          "container_count": {
+            "raw": "20 x 40'GP",
+            "normalised": "20",
+            "label_parser": "20 x 40'GP"
+          },
+          "gross_weight_kg": {
+            "raw": "22,000 KGS",
+            "normalised": "22000",
+            "label_parser": "22,000"
+          }
+        }
+      },
+      "expected_comparison": {
+        "shipper": {
+          "status": "MISSING",
+          "rule": "absent_from_both"
+        },
+        "consignee": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "notify_party": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "port_of_loading": {
+          "status": "MISSING",
+          "rule": "absent_from_si"
+        },
+        "port_of_discharge": {
+          "status": "MISSING",
+          "rule": "absent_from_si"
+        },
+        "container_count": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "gross_weight_kg": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        }
+      },
+      "expected_row": {
+        "category": "BL_COMPARISON",
+        "status": "OK",
+        "review_reason": null,
+        "defect_fields": [],
+        "missing_fields": [],
+        "has_defect": false
+      },
+      "notes": [
+        "All seven fields agree on paper -- the expected human verdict is OK.",
+        "Plausibility aside: 22,000 KGS across 20 x 40'GP is ~1.1 t per box, and 28.0 CBM for twenty 40-footers is impossible. Both documents carry the same absurd figure, so field comparison still says match. A cargo sanity check, if you ever add one, should fire here."
+      ],
+      "known_pipeline_gaps": [
+        "norm_entity() strips every non-[a-z0-9] character, so a shipper printed in Chinese only ('日出国际货运有限公司') normalises to None on BOTH documents and is reported absent instead of matching.",
+        "norm_port() drops the bracketed text and then strips non-Latin, so the SI's '上海，中国 (SHANGHAI, CHINA)' and '新加坡 (SINGAPORE)' normalise to None while the BL's English-only ports normalise fine."
+      ],
+      "current_code_row": {
+        "status": "NEEDS_REVIEW",
+        "defect_fields": [],
+        "missing_fields": [
+          "shipper",
+          "port_of_loading",
+          "port_of_discharge"
+        ],
+        "_why": "What normalize.py + compare.py produce from the same raws today. It differs from expected_row, and the reason is a normaliser gap, not a disagreement between the documents."
+      }
+    },
+    "edge_003": {
+      "image": "images/edge_003_tamil_scan.webp",
+      "email": "inbox/edge_003.json",
+      "si_document": "attachments/edge_003_SI.txt",
+      "bl_document": "attachments/edge_003_BL.txt",
+      "si_crop": "images/edge_003_SI.png",
+      "bl_crop": "images/edge_003_BL.png",
+      "email_crop": "images/edge_003_email.png",
+      "email_text": "emails/edge_003.txt",
+      "scan_email": "inbox/edge_003_scan.json",
+      "si_scan": "scans/edge_003_SI.pdf",
+      "bl_scan": "scans/edge_003_BL.pdf",
+      "title": "Tamil email, 2-line cargo table -- SI states no container count",
+      "what_makes_it_hard": [
+        "Tamil email body",
+        "gross weight is split over two cargo lines with NO total row: 18,500 + 6,400 = 24,900, and the BL total is 24,900",
+        "the SI quantity column is in CARTONS (1,200 / 800), not containers",
+        "so container_count is absent from the SI entirely"
+      ],
+      "expected_extraction": {
+        "si": {
+          "shipper": {
+            "raw": "TAMIL FREIGHT LOGISTICS SDN BHD",
+            "normalised": "tamil freight logistics",
+            "label_parser": "TAMIL FREIGHT LOGISTICS SDN BHD"
+          },
+          "consignee": {
+            "raw": "SRI LANKA TRADING COMPANY (PVT) LTD",
+            "normalised": "sri lanka trading company",
+            "label_parser": "SRI LANKA TRADING COMPANY (PVT) LTD"
+          },
+          "notify_party": {
+            "raw": "SAME AS CONSIGNEE",
+            "normalised": "same consignee",
+            "label_parser": "SAME AS CONSIGNEE"
+          },
+          "port_of_loading": {
+            "raw": "PORT KLANG, MALAYSIA",
+            "normalised": "port klang",
+            "label_parser": "PORT KLANG, MALAYSIA"
+          },
+          "port_of_discharge": {
+            "raw": "COLOMBO, SRI LANKA",
+            "normalised": "colombo",
+            "label_parser": "COLOMBO, SRI LANKA"
+          },
+          "container_count": {
+            "raw": null,
+            "normalised": null,
+            "label_parser": null
+          },
+          "gross_weight_kg": {
+            "raw": "24,900",
+            "normalised": "24900",
+            "label_parser": null
+          }
+        },
+        "bl": {
+          "shipper": {
+            "raw": "TAMIL FREIGHT LOGISTICS SDN BHD",
+            "normalised": "tamil freight logistics",
+            "label_parser": "TAMIL FREIGHT LOGISTICS SDN BHD"
+          },
+          "consignee": {
+            "raw": "SRI LANKA TRADING COMPANY (PVT) LTD",
+            "normalised": "sri lanka trading company",
+            "label_parser": "SRI LANKA TRADING COMPANY (PVT) LTD"
+          },
+          "notify_party": {
+            "raw": "SAME AS CONSIGNEE",
+            "normalised": "same consignee",
+            "label_parser": "SAME AS CONSIGNEE"
+          },
+          "port_of_loading": {
+            "raw": "PORT KLANG, MALAYSIA",
+            "normalised": "port klang",
+            "label_parser": "PORT KLANG, MALAYSIA"
+          },
+          "port_of_discharge": {
+            "raw": "COLOMBO, SRI LANKA",
+            "normalised": "colombo",
+            "label_parser": "COLOMBO, SRI LANKA"
+          },
+          "container_count": {
+            "raw": "2 x 40'HQ",
+            "normalised": "2",
+            "label_parser": "2 x 40'HQ"
+          },
+          "gross_weight_kg": {
+            "raw": "24,900",
+            "normalised": "24900",
+            "label_parser": "24,900"
+          }
+        }
+      },
+      "expected_comparison": {
+        "shipper": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "consignee": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "notify_party": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "port_of_loading": {
+          "status": "MATCH",
+          "rule": "city_name_match"
+        },
+        "port_of_discharge": {
+          "status": "MATCH",
+          "rule": "city_name_match"
+        },
+        "container_count": {
+          "status": "MISSING",
+          "rule": "absent_from_si"
+        },
+        "gross_weight_kg": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        }
+      },
+      "expected_row": {
+        "category": "BL_COMPARISON",
+        "status": "NEEDS_REVIEW",
+        "review_reason": "missing_value",
+        "defect_fields": [],
+        "missing_fields": [
+          "container_count"
+        ],
+        "has_defect": false
+      },
+      "notes": [
+        "Two ways to fail: reading 18,500 (the first row) as the gross weight instead of summing, and reading '1,200 Cartons' as a container count.",
+        "The correct outcome is NEEDS_REVIEW on a missing container count, not a weight mismatch."
+      ],
+      "known_pipeline_gaps": [
+        "The SI prints its weight only inside the cargo table, with no 'Gross Weight:' line, so the label parser finds nothing to pair and the 24,900 total has to be summed from the two rows."
+      ]
+    },
+    "edge_004": {
+      "image": "images/edge_004_handwritten_amend.webp",
+      "email": "inbox/edge_004.json",
+      "si_document": "attachments/edge_004_SI.txt",
+      "bl_document": "attachments/edge_004_BL.txt",
+      "si_crop": "images/edge_004_SI.png",
+      "bl_crop": "images/edge_004_BL.png",
+      "email_crop": "images/edge_004_email.png",
+      "email_text": "emails/edge_004.txt",
+      "scan_email": "inbox/edge_004_scan.json",
+      "si_scan": "scans/edge_004_SI.pdf",
+      "bl_scan": "scans/edge_004_BL.pdf",
+      "title": "Typed docs with handwritten overrides -- the handwriting CREATES the mismatch",
+      "what_makes_it_hard": [
+        "clean typed forms, so OCR is easy and the reasoning is the test",
+        "SI gross weight: printed 22,300 struck through, 22,500 written by hand",
+        "BL container count: printed 3 x 40'HQ struck through, 4 x 40'HQ written by hand ('rev 2')",
+        "SI container count is NOT amended -- it still reads 3 x 40'HQ",
+        "margin notes: 'pls confirm final wt' on the SI, 'consignee ok' with a tick on the BL"
+      ],
+      "expected_extraction": {
+        "si": {
+          "shipper": {
+            "raw": "MERIDIAN PALM TRADING SDN. BHD.",
+            "normalised": "meridian palm trading",
+            "label_parser": "MERIDIAN PALM TRADING SDN. BHD."
+          },
+          "consignee": {
+            "raw": "EASTERN GLOBE IMPORTS LLC",
+            "normalised": "eastern globe imports",
+            "label_parser": "Sdoc Clearview Sdn. Bhd., Unit 7-3, Menara Oceanus, Jalan PJU 8/1,"
+          },
+          "notify_party": {
+            "raw": "SAME AS CONSIGNEE",
+            "normalised": "same consignee",
+            "label_parser": "SAME AS CONSIGNEE"
+          },
+          "port_of_loading": {
+            "raw": "PORT KLANG, MALAYSIA",
+            "normalised": "port klang",
+            "label_parser": "PORT KLANG, MALAYSIA"
+          },
+          "port_of_discharge": {
+            "raw": "JEBEL ALI, UAE",
+            "normalised": "jebel ali",
+            "label_parser": "JEBEL ALI, UAE"
+          },
+          "container_count": {
+            "raw": "3 x 40'HQ",
+            "normalised": "3",
+            "label_parser": "3 x 40'HQ"
+          },
+          "gross_weight_kg": {
+            "raw": "22,500 KGS",
+            "normalised": "22500",
+            "label_parser": "22,500 KGS"
+          }
+        },
+        "bl": {
+          "shipper": {
+            "raw": "MERIDIAN PALM TRADING SDN BHD",
+            "normalised": "meridian palm trading",
+            "label_parser": "MERIDIAN PALM TRADING SDN BHD"
+          },
+          "consignee": {
+            "raw": "EASTERN GLOBE IMPORTS LLC",
+            "normalised": "eastern globe imports",
+            "label_parser": "EASTERN GLOBE IMPORTS LLC"
+          },
+          "notify_party": {
+            "raw": "SAME AS CONSIGNEE",
+            "normalised": "same consignee",
+            "label_parser": "SAME AS CONSIGNEE"
+          },
+          "port_of_loading": {
+            "raw": "PORT KLANG, MALAYSIA",
+            "normalised": "port klang",
+            "label_parser": "PORT KLANG, MALAYSIA"
+          },
+          "port_of_discharge": {
+            "raw": "JEBEL ALI, UAE",
+            "normalised": "jebel ali",
+            "label_parser": "JEBEL ALI, UAE"
+          },
+          "container_count": {
+            "raw": "4 x 40'HQ",
+            "normalised": "4",
+            "label_parser": "4 x 40'HQ"
+          },
+          "gross_weight_kg": {
+            "raw": "22,500",
+            "normalised": "22500",
+            "label_parser": "22,500"
+          }
+        }
+      },
+      "expected_comparison": {
+        "shipper": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "consignee": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "notify_party": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "port_of_loading": {
+          "status": "MATCH",
+          "rule": "city_name_match"
+        },
+        "port_of_discharge": {
+          "status": "MATCH",
+          "rule": "city_name_match"
+        },
+        "container_count": {
+          "status": "MISMATCH",
+          "rule": "values_differ"
+        },
+        "gross_weight_kg": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        }
+      },
+      "expected_row": {
+        "category": "BL_COMPARISON",
+        "status": "MISMATCH",
+        "review_reason": null,
+        "defect_fields": [
+          "container_count"
+        ],
+        "missing_fields": [],
+        "has_defect": true
+      },
+      "notes": [
+        "The verdict flips depending on which layer you read. Reading only the printed values gives a weight mismatch; reading the handwriting gives a container mismatch. Only one of the two is correct.",
+        "'pls confirm final wt' means the weight is not final even at 22,500, so a human should see this regardless of the field verdict."
+      ],
+      "known_pipeline_gaps": [
+        "The SI carries a 'To :' addressee block naming Sdoc Clearview itself. field_for_label() matches the short label 'To' against the consignee alias 'to the order of' through its containment rule, so the label parser reads the addressee as the consignee."
+      ],
+      "printed_only_variant": {
+        "why": "What an extractor that ignores strikethrough would read instead.",
+        "si_gross_weight_kg": "22,300",
+        "bl_container_count": "3 x 40'HQ",
+        "would_report": "MISMATCH on gross_weight_kg (22,300 vs 22,500), container_count agreeing at 3 -- the opposite of the truth."
+      }
+    },
+    "edge_005": {
+      "image": "images/edge_005_fully_handwritten.webp",
+      "email": "inbox/edge_005.json",
+      "si_document": "attachments/edge_005_SI.txt",
+      "bl_document": "attachments/edge_005_BL.txt",
+      "si_crop": "images/edge_005_SI.png",
+      "bl_crop": "images/edge_005_BL.png",
+      "email_crop": null,
+      "email_text": "emails/edge_005.txt",
+      "scan_email": "inbox/edge_005_scan.json",
+      "si_scan": "scans/edge_005_SI.pdf",
+      "bl_scan": "scans/edge_005_BL.pdf",
+      "title": "Both documents entirely handwritten -- notify party and weight differ",
+      "what_makes_it_hard": [
+        "every value on both the SI and the BL is cursive handwriting",
+        "3-row container table; row TGHU3156789 has 24,000 struck through and 24,200 written in",
+        "the BL states its container count in WORDS: 'THREE (3) X 40HQ'",
+        "BL total 72,300 reconciles with the amended rows (24,000+24,100+24,200); the SI says 72,500"
+      ],
+      "expected_extraction": {
+        "si": {
+          "shipper": {
+            "raw": "Sunny Export Co., Ltd",
+            "normalised": "sunny export",
+            "label_parser": null
+          },
+          "consignee": {
+            "raw": "Global Marine Trading Pte Ltd",
+            "normalised": "global marine trading",
+            "label_parser": null
+          },
+          "notify_party": {
+            "raw": "East Sea Logistics Co., Ltd.",
+            "normalised": "east sea logistics",
+            "label_parser": null
+          },
+          "port_of_loading": {
+            "raw": "Qingdao, China",
+            "normalised": "qingdao",
+            "label_parser": null
+          },
+          "port_of_discharge": {
+            "raw": "Singapore",
+            "normalised": "singapore",
+            "label_parser": null
+          },
+          "container_count": {
+            "raw": "3 x 40HQ",
+            "normalised": "3",
+            "label_parser": null
+          },
+          "gross_weight_kg": {
+            "raw": "72,500 KGS",
+            "normalised": "72500",
+            "label_parser": null
+          }
+        },
+        "bl": {
+          "shipper": {
+            "raw": "Sunny Export Co., Ltd",
+            "normalised": "sunny export",
+            "label_parser": null
+          },
+          "consignee": {
+            "raw": "Global Marine Trading Pte Ltd",
+            "normalised": "global marine trading",
+            "label_parser": null
+          },
+          "notify_party": {
+            "raw": "Bright Way International Ltd.",
+            "normalised": "bright",
+            "label_parser": null
+          },
+          "port_of_loading": {
+            "raw": "Qingdao, China",
+            "normalised": "qingdao",
+            "label_parser": null
+          },
+          "port_of_discharge": {
+            "raw": "Singapore",
+            "normalised": "singapore",
+            "label_parser": null
+          },
+          "container_count": {
+            "raw": "THREE (3) X 40HQ",
+            "normalised": null,
+            "label_parser": null
+          },
+          "gross_weight_kg": {
+            "raw": "72,300 KGS",
+            "normalised": "72300",
+            "label_parser": null
+          }
+        }
+      },
+      "expected_comparison": {
+        "shipper": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "consignee": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "notify_party": {
+          "status": "MISMATCH",
+          "rule": "values_differ"
+        },
+        "port_of_loading": {
+          "status": "MATCH",
+          "rule": "city_name_match"
+        },
+        "port_of_discharge": {
+          "status": "MATCH",
+          "rule": "city_name_match"
+        },
+        "container_count": {
+          "status": "MISSING",
+          "rule": "absent_from_bl"
+        },
+        "gross_weight_kg": {
+          "status": "MISMATCH",
+          "rule": "values_differ"
+        }
+      },
+      "expected_row": {
+        "category": "BL_COMPARISON",
+        "status": "MISMATCH",
+        "review_reason": null,
+        "defect_fields": [
+          "notify_party",
+          "gross_weight_kg"
+        ],
+        "missing_fields": [],
+        "has_defect": true
+      },
+      "notes": [
+        "The source image has no email -- inbox/edge_005.json carries a synthetic covering note so the case can run end to end.",
+        "Container count agrees in substance (3 both sides) but the BL spells it out in words, so a digit-only reader will report it missing.",
+        "Both genuine defects are subtle: a different Hong Kong notify party, and a 200 kg weight gap."
+      ],
+      "known_pipeline_gaps": [
+        "norm_containers() only matches a leading digit, so the BL's 'THREE (3) X 40HQ' normalises to None and the count is reported absent from the BL although both documents say three."
+      ],
+      "current_code_row": {
+        "status": "MISMATCH",
+        "defect_fields": [
+          "notify_party",
+          "gross_weight_kg"
+        ],
+        "missing_fields": [
+          "container_count"
+        ],
+        "_why": "What normalize.py + compare.py produce from the same raws today. It differs from expected_row, and the reason is a normaliser gap, not a disagreement between the documents."
+      },
+      "synthetic_email": true
+    },
+    "edge_006": {
+      "image": "images/edge_006_chinese_handwritten_amend.webp",
+      "email": "inbox/edge_006.json",
+      "si_document": "attachments/edge_006_SI.txt",
+      "bl_document": "attachments/edge_006_BL.txt",
+      "si_crop": "images/edge_006_SI.png",
+      "bl_crop": "images/edge_006_BL.png",
+      "email_crop": "images/edge_006_email.png",
+      "email_text": "emails/edge_006.txt",
+      "scan_email": "inbox/edge_006_scan.json",
+      "si_scan": "scans/edge_006_SI.pdf",
+      "bl_scan": "scans/edge_006_BL.pdf",
+      "title": "Chinese forms with handwritten amendments -- the handwriting RESOLVES the mismatch",
+      "what_makes_it_hard": [
+        "Chinese forms plus Chinese handwritten margin notes",
+        "SI gross weight: 22,300 KGS struck through, 22,500 KGS written by hand, with '请确认最终重量！' (confirm the final weight) beside it",
+        "BL quantity: 3 x 40'HQ struck through, 4 x 40'HQ written by hand, marked '已改 rev 2'",
+        "red chop overlapping the SI signature block",
+        "ports are Chinese with the English in brackets on BOTH documents"
+      ],
+      "expected_extraction": {
+        "si": {
+          "shipper": {
+            "raw": "大洋棕榈贸易有限公司 / OCEAN PALM TRADING CO., LTD.",
+            "normalised": "ocean palm trading",
+            "label_parser": null
+          },
+          "consignee": {
+            "raw": "GLOBAL OILS PTE. LTD.",
+            "normalised": "global oils",
+            "label_parser": null
+          },
+          "notify_party": {
+            "raw": "Sinar Agri Resources Sdn. Bhd.",
+            "normalised": "sinar agri resources",
+            "label_parser": null
+          },
+          "port_of_loading": {
+            "raw": "深圳 (SHENZHEN, CHINA)",
+            "normalised": null,
+            "label_parser": null
+          },
+          "port_of_discharge": {
+            "raw": "巴生 (PORT KLANG, MALAYSIA)",
+            "normalised": null,
+            "label_parser": null
+          },
+          "container_count": {
+            "raw": "4 x 40'HQ",
+            "normalised": "4",
+            "label_parser": null
+          },
+          "gross_weight_kg": {
+            "raw": "22,500 KGS",
+            "normalised": "22500",
+            "label_parser": null
+          }
+        },
+        "bl": {
+          "shipper": {
+            "raw": "大洋棕榈贸易有限公司 / OCEAN PALM TRADING CO., LTD.",
+            "normalised": "ocean palm trading",
+            "label_parser": null
+          },
+          "consignee": {
+            "raw": "GLOBAL OILS PTE. LTD.",
+            "normalised": "global oils",
+            "label_parser": null
+          },
+          "notify_party": {
+            "raw": "Sinar Agri Resources Sdn. Bhd.",
+            "normalised": "sinar agri resources",
+            "label_parser": null
+          },
+          "port_of_loading": {
+            "raw": "深圳 (SHENZHEN, CHINA)",
+            "normalised": null,
+            "label_parser": null
+          },
+          "port_of_discharge": {
+            "raw": "巴生 (PORT KLANG, MALAYSIA)",
+            "normalised": null,
+            "label_parser": null
+          },
+          "container_count": {
+            "raw": "4 x 40'HQ",
+            "normalised": "4",
+            "label_parser": null
+          },
+          "gross_weight_kg": {
+            "raw": "22,500 KGS",
+            "normalised": "22500",
+            "label_parser": null
+          }
+        }
+      },
+      "expected_comparison": {
+        "shipper": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "consignee": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "notify_party": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "port_of_loading": {
+          "status": "MISSING",
+          "rule": "absent_from_both"
+        },
+        "port_of_discharge": {
+          "status": "MISSING",
+          "rule": "absent_from_both"
+        },
+        "container_count": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        },
+        "gross_weight_kg": {
+          "status": "MATCH",
+          "rule": "exact_after_normalisation"
+        }
+      },
+      "expected_row": {
+        "category": "BL_COMPARISON",
+        "status": "OK",
+        "review_reason": null,
+        "defect_fields": [],
+        "missing_fields": [],
+        "has_defect": false
+      },
+      "notes": [
+        "The mirror image of edge_004: here the handwriting is what makes the two documents agree. Ignore it and you raise two false discrepancies.",
+        "The BL is stamped 草稿 (DRAFT) but its 提单种类 field says 正本 (ORIGINAL) -- a document-type contradiction worth a human's eyes even though all seven fields match.",
+        "The sender's domain is greenpalmtrading.com while every document is issued by Ocean Palm Trading. Sender/shipper domain mismatch.",
+        "4 x 40'HQ carrying only 22,500 KGS of palm oil is implausibly light."
+      ],
+      "known_pipeline_gaps": [
+        "norm_port() returns None for a port written in Chinese with the English in brackets ('深圳 (SHENZHEN, CHINA)'), so both ports are reported absent from both documents even though they are identical."
+      ],
+      "current_code_row": {
+        "status": "NEEDS_REVIEW",
+        "defect_fields": [],
+        "missing_fields": [
+          "port_of_loading",
+          "port_of_discharge"
+        ],
+        "_why": "What normalize.py + compare.py produce from the same raws today. It differs from expected_row, and the reason is a normaliser gap, not a disagreement between the documents."
+      },
+      "printed_only_variant": {
+        "why": "What an extractor that ignores strikethrough would read instead.",
+        "si_gross_weight_kg": "22,300 KGS",
+        "bl_container_count": "3 x 40'HQ",
+        "would_report": "MISMATCH on BOTH gross_weight_kg and container_count -- two false positives on a pair that actually agrees."
+      }
+    }
+  }
+}

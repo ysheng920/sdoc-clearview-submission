@@ -1,0 +1,38 @@
+提单 / BILL OF LADING          [stamped 草稿 / DRAFT]
+========================================
+远洋航运有限公司 / OCEAN LINK SHIPPING CO., LTD.
+中国上海市虹口区东大名路 500 号 航运大厦 20 楼
+电话: +86 21 6500 8899    网址: www.oceanlinkship.com
+
+提单号 / B/L No.: OLSZ2405178
+日期 / Date: 2024年5月17日
+页码 / Page: 1 / 1
+提单种类 / B/L Type: 正本 (ORIGINAL)
+运费条款 / Freight Terms: FREIGHT PREPAID
+
+发货人 / Shipper: 大洋棕榈贸易有限公司 / OCEAN PALM TRADING CO., LTD.
+  中国广东省深圳市南山区科技南路 100 号华贸大厦 18 楼
+收货人 / Consignee: GLOBAL OILS PTE. LTD.
+  8 Marina View, #15-01 Asia Square Tower 1; Singapore 018960
+通知方 / Notify Party: Sinar Agri Resources Sdn. Bhd.
+  Level 10, Menara Horizon, Jalan Sultan Ismail; 50250 Kuala Lumpur, Malaysia
+船名 / 航次 / Vessel / Voyage: MV EVER BRIGHT  V. 2406E
+
+标记及号码 / Marks & Nos.: N/M
+货物描述 / Description of Goods: 精炼棕榈油 (RBD PALM OIL) IN FLEXITANK, FOR FOOD USE ONLY
+集装箱号 / Container No.: FSCU1234567, TCLU7654321, SEGU9876543, TRHU2468135
+柜量 / Quantity: 4 x 40'HQ
+毛重 / Gross Weight: 22,500 KGS
+体积 / Measurement: 264.0 CBM
+
+装货港 / Port of Loading: 深圳 (SHENZHEN, CHINA)
+卸货港 / Port of Discharge: 巴生 (PORT KLANG, MALAYSIA)
+最终目的地 / Final Destination: 吉隆坡 (KUALA LUMPUR, MALAYSIA)
+SHIPPED ON BOARD: 2024年5月18日  ON BOARD MV EVER BRIGHT V. 2406E
+
+Handwritten amendments on this BL:
+  - 柜量 / Quantity: printed "3 x 40'HQ" struck through, "4 x 40'HQ" written beside it.
+  - Margin note beside the quantity box: "已改 rev 2" (amended, revision 2).
+    Four container numbers are printed, consistent with the amended count of 4.
+
+远洋航运有限公司 -- Authorized Signature

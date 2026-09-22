@@ -1,0 +1,33 @@
+BILL OF LADING (DRAFT)
+========================================
+MAERSK                                                    Page 1 of 1
+
+B/L No.: MAEU240416123
+Date: 16 APR 2024
+Export References: TFL-SI-240416
+
+Shipper: TAMIL FREIGHT LOGISTICS SDN BHD
+  Level 10, Menara Suria; No. 8, Jalan Sultan Ismail; 50250 Kuala Lumpur, Malaysia
+Consignee: SRI LANKA TRADING COMPANY (PVT) LTD
+  No. 123, Galle Road; Colombo 03; Sri Lanka
+Notify Party: SAME AS CONSIGNEE
+Vessel: MAERSK CHENNAI
+Voyage: 412W
+Port of Loading: PORT KLANG, MALAYSIA
+Port of Discharge: COLOMBO, SRI LANKA
+Final Destination: COLOMBO, SRI LANKA
+
+Marks & Numbers: N/M
+No. of Containers and Kind of Packages: 2 x 40'HQ (FCL/FCL)
+Description of Goods:
+  1. RUBBER GLOVES (NON-STERILE) HS CODE: 4015.19
+  2. DISPOSABLE FACE MASK (3-PLY) HS CODE: 6307.90
+Gross Weight (KGS): 24,900
+Measurement (CBM): 56.0
+
+Freight and Charges: FREIGHT PREPAID
+TOTAL NUMBER OF CONTAINERS: 2 x 40'HQ
+TOTAL GROSS WEIGHT: 24,900 KGS
+SHIPPER'S LOAD, COUNT AND SEAL
+
+For and on behalf of MAERSK A/S -- Authorised Signatory

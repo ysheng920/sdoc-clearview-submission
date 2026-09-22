@@ -1,0 +1,35 @@
+SHIPPING INSTRUCTION
+========================================
+TAMIL FREIGHT LOGISTICS SDN BHD
+Level 10, Menara Suria, No. 8, Jalan Sultan Ismail, 50250 Kuala Lumpur, Malaysia
+Tel: +60 12-345 6789    Email: ops@tamilfreight.com
+
+Ref No.: TFL-SI-240416
+Date: 16 APR 2024
+Page: 1 of 1
+
+Shipper: TAMIL FREIGHT LOGISTICS SDN BHD
+  Level 10, Menara Suria; No. 8, Jalan Sultan Ismail; 50250 Kuala Lumpur, Malaysia
+Consignee: SRI LANKA TRADING COMPANY (PVT) LTD
+  No. 123, Galle Road; Colombo 03; Sri Lanka
+Notify Party: SAME AS CONSIGNEE
+Vessel / Voyage: MAERSK CHENNAI / 412W
+Port of Loading: PORT KLANG, MALAYSIA
+Port of Discharge: COLOMBO, SRI LANKA
+Final Destination: COLOMBO, SRI LANKA
+
+Cargo Details:
+  1 | RUBBER GLOVES (NON-STERILE)   | HS 4015.19 | Cartons on Pallet | 1,200 Cartons | 18,500 KGS
+  2 | DISPOSABLE FACE MASK (3-PLY)  | HS 6307.90 | Cartons on Pallet |   800 Cartons |  6,400 KGS
+  (no total row is printed on this SI; 18,500 + 6,400 = 24,900 KGS)
+  (this SI states NO container count -- the quantity column is in cartons)
+
+Special Instruction:
+  1. Please issue draft BL for our approval.
+  2. Mark "FREIGHT PREPAID" on BL.
+  3. All charges at origin.
+  4. Please notify us once the draft is ready.
+
+Senthil Kumar, Operations Executive
+Tamil Freight Logistics Sdn Bhd
+[company chop: 1234567-P KUALA LUMPUR]

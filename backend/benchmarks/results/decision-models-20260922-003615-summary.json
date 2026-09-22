@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-21T16:36:15.644552+00:00",
+  "dataset": {
+    "name": "SDOC Clearview labelled inbox",
+    "cases": 520,
+    "category_distribution": {
+      "BL_COMPARISON": 220,
+      "INVOICE_QUERY": 75,
+      "SI_REQUEST": 125,
+      "GENERAL": 60,
+      "SPAM": 40
+    },
+    "input": "subject, sender, first 3000 body characters, attachment file names",
+    "attachment_contents_sent": false
+  },
+  "methodology": {
+    "task": "five-class shipping email routing",
+    "categories": [
+      "BL_COMPARISON",
+      "SI_REQUEST",
+      "INVOICE_QUERY",
+      "GENERAL",
+      "SPAM"
+    ],
+    "batch_size": 8,
+    "workers": 4,
+    "temperature": 0,
+    "confidence_note": "Jev confidence and chat-model self-reported confidence are not directly comparable."
+  },
+  "requested_models": {
+    "jev": "typesafe/jev-1.13",
+    "gemini": "gemini-3.1-flash-lite"
+  },
+  "models": {
+    "jev": {
+      "name": "jev",
+      "accuracy": 0.9884615384615385,
+      "correct": 514,
+      "total": 520,
+      "macro_f1": 0.9821428571428571,
+      "per_category": {
+        "BL_COMPARISON": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 220
+        },
+        "SI_REQUEST": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 125
+        },
+        "INVOICE_QUERY": {
+          "precision": 1.0,
+          "recall": 0.92,
+          "f1": 0.9583333333333334,
+          "support": 75
+        },
+        "GENERAL": {
+          "precision": 0.9090909090909091,
+          "recall": 1.0,
+          "f1": 0.9523809523809523,
+          "support": 60
+        },
+        "SPAM": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 40
+        }
+      },
+      "confusion_matrix": {
+        "BL_COMPARISON": {
+          "BL_COMPARISON": 220,
+          "SI_REQUEST": 0,
+          "INVOICE_QUERY": 0,
+          "GENERAL": 0,
+          "SPAM": 0,
+          "INVALID": 0
+        },
+        "SI_REQUEST": {
+          "BL_COMPARISON": 0,
+          "SI_REQUEST": 125,
+          "INVOICE_QUERY": 0,
+          "GENERAL": 0,
+          "SPAM": 0,
+          "INVALID": 0
+        },
+        "INVOICE_QUERY": {
+          "BL_COMPARISON": 0,
+          "SI_REQUEST": 0,
+          "INVOICE_QUERY": 69,
+          "GENERAL": 6,
+          "SPAM": 0,
+          "INVALID": 0
+        },
+        "GENERAL": {
+          "BL_COMPARISON": 0,
+          "SI_REQUEST": 0,
+          "INVOICE_QUERY": 0,
+          "GENERAL": 60,
+          "SPAM": 0,
+          "INVALID": 0
+        },
+        "SPAM": {
+          "BL_COMPARISON": 0,
+          "SI_REQUEST": 0,
+          "INVOICE_QUERY": 0,
+          "GENERAL": 0,
+          "SPAM": 40,
+          "INVALID": 0
+        }
+      },
+      "latency": {
+        "batch_size": 8,
+        "median_batch_ms": 737.7067999914289,
+        "p95_batch_ms": 1119.863500003703,
+        "effective_ms_per_email": 25.27019384612616,
+        "wall_time_s": 13.140500799985602
+      },
+      "usage": {
+        "input_tokens": 319107,
+        "output_tokens": 32947,
+        "cost_usd": 0.013402494
+      },
+      "mean_reported_confidence": 0.9845,
+      "confidence_routing": [
+        {
+          "threshold": 0.6,
+          "auto_cases": 514,
+          "coverage": 0.9884615384615385,
+          "auto_errors": 2,
+          "auto_accuracy": 0.9961089494163424,
+          "fallback_cases": 6
+        },
+        {
+          "threshold": 0.7,
+          "auto_cases": 513,
+          "coverage": 0.9865384615384616,
+          "auto_errors": 1,
+          "auto_accuracy": 0.9980506822612085,
+          "fallback_cases": 7
+        },
+        {
+          "threshold": 0.8,
+          "auto_cases": 512,
+          "coverage": 0.9846153846153847,
+          "auto_errors": 1,
+          "auto_accuracy": 0.998046875,
+          "fallback_cases": 8
+        },
+        {
+          "threshold": 0.9,
+          "auto_cases": 506,
+          "coverage": 0.9730769230769231,
+          "auto_errors": 0,
+          "auto_accuracy": 1.0,
+          "fallback_cases": 14
+        }
+      ],
+      "resolved_models": {
+        "typesafe/jev-1.13-20260917": 65
+      },
+      "providers": {
+        "TypeSafe": 65
+      }
+    },
+    "gemini": {
+      "name": "gemini",
+      "accuracy": 0.9980769230769231,
+      "correct": 519,
+      "total": 520,
+      "macro_f1": 0.9987476063853924,
+      "per_category": {
+        "BL_COMPARISON": {
+          "precision": 1.0,
+          "recall": 0.9954545454545455,
+          "f1": 0.9977220956719818,
+          "support": 220
+        },
+        "SI_REQUEST": {
+          "precision": 0.9920634920634921,
+          "recall": 1.0,
+          "f1": 0.9960159362549801,
+          "support": 125
+        },
+        "INVOICE_QUERY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 75
+        },
+        "GENERAL": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 60
+        },
+        "SPAM": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 40
+        }
+      },
+      "confusion_matrix": {
+        "BL_COMPARISON": {
+          "BL_COMPARISON": 219,
+          "SI_REQUEST": 1,
+          "INVOICE_QUERY": 0,
+          "GENERAL": 0,
+          "SPAM": 0,
+          "INVALID": 0
+        },
+        "SI_REQUEST": {
+          "BL_COMPARISON": 0,
+          "SI_REQUEST": 125,
+          "INVOICE_QUERY": 0,
+          "GENERAL": 0,
+          "SPAM": 0,
+          "INVALID": 0
+        },
+        "INVOICE_QUERY": {
+          "BL_COMPARISON": 0,
+          "SI_REQUEST": 0,
+          "INVOICE_QUERY": 75,
+          "GENERAL": 0,
+          "SPAM": 0,
+          "INVALID": 0
+        },
+        "GENERAL": {
+          "BL_COMPARISON": 0,
+          "SI_REQUEST": 0,
+          "INVOICE_QUERY": 0,
+          "GENERAL": 60,
+          "SPAM": 0,
+          "INVALID": 0
+        },
+        "SPAM": {
+          "BL_COMPARISON": 0,
+          "SI_REQUEST": 0,
+          "INVOICE_QUERY": 0,
+          "GENERAL": 0,
+          "SPAM": 40,
+          "INVALID": 0
+        }
+      },
+      "latency": {
+        "batch_size": 8,
+        "median_batch_ms": 1797.2553999861702,
+        "p95_batch_ms": 2242.1771999797784,
+        "effective_ms_per_email": 58.97983365385489,
+        "wall_time_s": 30.66951350000454
+      },
+      "usage": {
+        "input_tokens": 172044,
+        "output_tokens": 17262,
+        "cost_usd": 0.0
+      },
+      "mean_reported_confidence": 0.9697115384615385,
+      "confidence_routing": [
+        {
+          "threshold": 0.6,
+          "auto_cases": 520,
+          "coverage": 1.0,
+          "auto_errors": 1,
+          "auto_accuracy": 0.9980769230769231,
+          "fallback_cases": 0
+        },
+        {
+          "threshold": 0.7,
+          "auto_cases": 520,
+          "coverage": 1.0,
+          "auto_errors": 1,
+          "auto_accuracy": 0.9980769230769231,
+          "fallback_cases": 0
+        },
+        {
+          "threshold": 0.8,
+          "auto_cases": 520,
+          "coverage": 1.0,
+          "auto_errors": 1,
+          "auto_accuracy": 0.9980769230769231,
+          "fallback_cases": 0
+        },
+        {
+          "threshold": 0.9,
+          "auto_cases": 514,
+          "coverage": 0.9884615384615385,
+          "auto_errors": 1,
+          "auto_accuracy": 0.9980544747081712,
+          "fallback_cases": 6
+        }
+      ],
+      "resolved_models": {
+        "gemini-3.1-flash-lite": 65
+      },
+      "providers": {
+        "gemini": 65
+      }
+    }
+  },
+  "highlights": {
+    "highest_accuracy": "gemini",
+    "highest_macro_f1": "gemini",
+    "lowest_effective_latency": "jev",
+    "lowest_reported_cost": "jev"
+  }
+}

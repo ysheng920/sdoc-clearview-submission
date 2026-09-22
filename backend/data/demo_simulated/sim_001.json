@@ -1,0 +1,10 @@
+{
+  "email_id": "sim_001",
+  "from": "nurul.rahman@murnilogistics.com",
+  "subject": "Sila sahkan Draf BL berbanding Shipping Instruction",
+  "body": "Assalamualaikum / Salam sejahtera,\n\nMohon pihak tuan/puan bantu semak draf Bill of Lading (BL) berbanding Shipping Instruction (SI) yang dilampirkan.\n\nSila pastikan semua maklumat penting adalah sama, terutamanya:\n1. Nama shipper dan consignee\n2. Port of loading dan port of discharge\n3. Bilangan kontena\n4. Gross weight\n5. Jenis barang dan description\n\nJika terdapat sebarang perbezaan, sila maklumkan kepada kami secepat mungkin supaya kami boleh minta pembetulan daripada customer.\n\nTerima kasih atas bantuan dan kerjasama tuan/puan.\n\nYang benar,\nNurul Rahman\nLogistics Executive\nMurni Logistics Sdn Bhd\n+60 3-7890 1234\n",
+  "attachments": [
+    "simulated/sim_001_SI.txt",
+    "simulated/sim_001_BL.txt"
+  ]
+}

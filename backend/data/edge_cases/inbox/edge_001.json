@@ -1,0 +1,13 @@
+{
+  "email_id": "edge_001",
+  "from": "nurul.rahman@murnilogistics.com",
+  "to": "ops@sdoc-clearview.com",
+  "date": "Tue, 12 Mar 2024, 10:24 AM",
+  "subject": "Sila sahkan Draf BL berbanding Shipping Instruction",
+  "body": "Assalamualaikum / Salam sejahtera,\n\nMohon pihak tuan/puan bantu semak draf Bill of Lading (BL) berbanding Shipping Instruction (SI) yang dilampirkan.\n\nSila pastikan semua maklumat penting adalah sama, terutamanya:\n1. Nama shipper dan consignee\n2. Port of loading dan port of discharge\n3. Bilangan kontena\n4. Gross weight\n5. Jenis barang dan description\n\nJika terdapat sebarang perbezaan, sila maklumkan kepada kami secepat mungkin supaya kami boleh minta pembetulan daripada customer.\n\nTerima kasih atas bantuan dan kerjasama tuan/puan.\n\nYang benar,\nNurul Rahman\nLogistics Executive\nMurni Logistics Sdn Bhd\n+60 3-7890 1234",
+  "attachments": [
+    "attachments/edge_001_SI.txt",
+    "attachments/edge_001_BL.txt"
+  ],
+  "source_image": "images/edge_001_malay_scan.webp"
+}

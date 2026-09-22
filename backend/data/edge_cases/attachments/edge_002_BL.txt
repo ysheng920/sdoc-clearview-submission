@@ -1,0 +1,32 @@
+BILL OF LADING (DRAFT)
+========================================
+OCEAN LINK SHIPPING LINE
+
+B/L No.: OLK20240415001
+Date: 15 APR 2024
+Export References: SI-20240415-01
+
+Shipper: 日出国际货运有限公司
+  上海市浦东新区世纪大道 200 号; 上海 200120, 中国
+Consignee: GLOBAL TRADING PTE. LTD.
+  8 Marina View, #15-01 Asia Square Tower 1; Singapore 018960
+Notify Party: SAME AS CONSIGNEE
+Vessel: EVER BRIGHT
+Voyage: EB2405
+Port of Loading: SHANGHAI, CHINA
+Port of Discharge: SINGAPORE
+Final Destination: SINGAPORE
+
+PARTICULARS FURNISHED BY SHIPPER
+Marks & Numbers: N/M
+No. of Containers and Kind of Packages: 20 x 40'GP (FCL/FCL)
+Description of Goods: PLASTIC RESIN  HS CODE: 3901.10
+Gross Weight (KGS): 22,000
+Measurement (CBM): 28.0
+
+Freight and Charges: FREIGHT PREPAID
+TOTAL NUMBER OF CONTAINERS: 20 x 40'GP
+TOTAL GROSS WEIGHT: 22,000 KGS
+SHIPPER'S LOAD, COUNT AND SEAL
+
+For and on behalf of OCEAN LINK SHIPPING LINE -- Authorised Signature

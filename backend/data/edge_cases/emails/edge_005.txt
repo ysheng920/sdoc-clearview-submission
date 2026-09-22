@@ -1,0 +1,24 @@
+Sender:  li.wei@sunnyexport.com.cn
+Subject: Draft BL TOSHK2404187 for checking - Sunny Export / Qingdao-Singapore
+
+(received Mon, 15 Apr 2024, 09:40 AM, to ops@sdoc-clearview.com)
+
+Attachments -- upload one of these pairs and set the role:
+  SI  ->  scans/edge_005_SI.pdf        (image-only, takes the VLM path)
+  BL  ->  scans/edge_005_BL.pdf
+  or  ->  attachments/edge_005_SI.txt  (text, takes the label-parser path)
+          attachments/edge_005_BL.txt
+
+Note: Email body is SYNTHETIC -- the source image contains only the SI and the BL.
+
+===== BODY (everything below this line, verbatim) =====
+Dear Sirs,
+
+Please find attached our handwritten Shipping Instruction dated 12 April 2024 and the draft Bill of Lading TOSHK2404187 received from Trans Ocean Shipping.
+
+Kindly check both documents against each other and revert with any discrepancy before we confirm issuance.
+
+Best regards,
+Li Wei
+Sunny Export Co., Ltd.
+Qingdao, China

@@ -1,0 +1,87 @@
+{
+  "entity": [
+    {
+      "a": "east bright",
+      "b": "east bright trading",
+      "approved_by": "system_predefined",
+      "approved_at": "2026-09-20 09:00:00",
+      "from_email": null,
+      "run_id": null,
+      "note": "Corporate trading name alias"
+    },
+    {
+      "a": "cosco shipping lines",
+      "b": "cosco container lines",
+      "approved_by": "system_predefined",
+      "approved_at": "2026-09-20 09:00:00",
+      "from_email": null,
+      "run_id": null,
+      "note": "Carrier brand variation"
+    },
+    {
+      "a": "ocean network express",
+      "b": "one ocean network express",
+      "approved_by": "system_predefined",
+      "approved_at": "2026-09-20 09:00:00",
+      "from_email": null,
+      "run_id": null,
+      "note": "Carrier acronym alias"
+    },
+    {
+      "a": "evergreen marine",
+      "b": "evergreen line",
+      "approved_by": "system_predefined",
+      "approved_at": "2026-09-20 09:00:00",
+      "from_email": null,
+      "run_id": null,
+      "note": "Shipping line trade name"
+    },
+    {
+      "a": "sunrise international logistics",
+      "b": "日出国际货运",
+      "approved_by": "system_predefined",
+      "approved_at": "2026-09-20 09:00:00",
+      "from_email": null,
+      "run_id": null,
+      "note": "Bilingual trading name alias (Sunrise / 日出国际货运)"
+    }
+  ],
+  "port": [
+    {
+      "a": "port klang",
+      "b": "pelabuhan klang",
+      "approved_by": "system_predefined",
+      "approved_at": "2026-09-20 09:00:00",
+      "from_email": null,
+      "run_id": null,
+      "note": "National language port spelling"
+    },
+    {
+      "a": "port klang",
+      "b": "mypkg",
+      "approved_by": "system_predefined",
+      "approved_at": "2026-09-20 09:00:00",
+      "from_email": null,
+      "run_id": null,
+      "note": "UN/LOCODE port abbreviation"
+    },
+    {
+      "a": "tanjung pelepas",
+      "b": "myptp",
+      "approved_by": "system_predefined",
+      "approved_at": "2026-09-20 09:00:00",
+      "from_email": null,
+      "run_id": null,
+      "note": "Port of Tanjung Pelepas code"
+    },
+    {
+      "a": "singapore",
+      "b": "sgsin",
+      "approved_by": "system_predefined",
+      "approved_at": "2026-09-20 09:00:00",
+      "from_email": null,
+      "run_id": null,
+      "note": "Port of Singapore LOCODE"
+    }
+  ]
+}
