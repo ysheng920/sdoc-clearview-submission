@@ -1,21 +1,5 @@
 # SDOC Clearview — Hackathon Submission Brief
 
-This document matches the Averis × Monash Hackathon 2026 submission
-requirements. It can be shared directly on GitHub and reused in the slide deck,
-demo video, and Google Form.
-
-## Submission checklist
-
-| Required item | Status | Public link / action |
-|---|---|---|
-| Project name and description | Ready | Use the text below |
-| Demo video and pitch deck | Ready | [Open Google Drive folder](https://drive.google.com/drive/folders/1GywjgPJgQWtBzhEp45ecYdWzkm2S3ryf?usp=sharing) |
-| Public GitHub repository | Ready | [ysheng920/sdoc-clearview-submission](https://github.com/ysheng920/sdoc-clearview-submission) |
-| Public live prototype | Live and verified | [Open SDOC Clearview](https://sdoc-clearview-821121433502.asia-southeast1.run.app) |
-| Slide deck or technical documentation | Draft ready | Link this document or export it to PDF |
-
-Test every final URL while signed out or in an incognito window before
-submitting.
 
 ## 1. Project name and description
 
@@ -278,3 +262,15 @@ multi-user state across Cloud Run instances.
 - Expand beyond seven fields and support customer-specific policies.
 - Integrate mailboxes and sending only after identity, approval, and audit
   controls are complete.
+
+## 9. Technical architecture summary
+
+| Area | Current Hackathon prototype | Production evolution |
+|---|---|---|
+| Hosting | One Google Cloud Run container | Horizontally scaled Cloud Run services |
+| Database | Resettable SQLite working copy | Cloud SQL for PostgreSQL |
+| Files | Baseline and session uploads in container | Cloud Storage with lifecycle controls |
+| Processing | Synchronous FastAPI workflow | Pub/Sub / Cloud Tasks and Cloud Run Jobs |
+| Identity | Public judging demo | IAP / Identity Platform and role-based access |
+| AI | Jev primary, Gemini fallback | Versioned routing, shadow evaluation, monitoring |
+| Feedback | Corrections and mapping candidates | Governed rule publication and regression gates |

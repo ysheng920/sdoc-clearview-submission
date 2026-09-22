@@ -28,8 +28,6 @@ Built for the **Averis × Monash Hackathon 2026**.
 | Deployment guide | [Google Cloud Run deployment](docs/CLOUD_RUN_DEPLOYMENT.md) |
 | Benchmark report | [Jev and Gemini benchmark](backend/benchmarks/results/latest.md) |
 
-> Before submitting the Google Form, test every public link in an incognito browser.
-
 ## The problem
 
 Shipping operations teams receive high volumes of emails with instructions,
