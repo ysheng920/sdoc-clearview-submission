@@ -9,9 +9,9 @@ demo video, and Google Form.
 | Required item | Status | Public link / action |
 |---|---|---|
 | Project name and description | Ready | Use the text below |
-| Demo video, maximum 5 minutes | Pending upload | YouTube Public/Unlisted or Drive “Anyone with the link” |
-| Public GitHub repository | Pending clean snapshot | Add final repository URL |
-| Public live prototype | Deployment in progress | Add Cloud Run URL |
+| Demo video and pitch deck | Ready | [Open Google Drive folder](https://drive.google.com/drive/folders/1GywjgPJgQWtBzhEp45ecYdWzkm2S3ryf?usp=sharing) |
+| Public GitHub repository | Ready | [ysheng920/sdoc-clearview-submission](https://github.com/ysheng920/sdoc-clearview-submission) |
+| Public live prototype | Live and verified | [Open SDOC Clearview](https://sdoc-clearview-821121433502.asia-southeast1.run.app) |
 | Slide deck or technical documentation | Draft ready | Link this document or export it to PDF |
 
 Test every final URL while signed out or in an incognito window before
@@ -308,7 +308,7 @@ Target approximately 4:30 to remain safely below the limit.
 ## 11. Final submission checks
 
 - [ ] Team and representative details are correct in Google Forms.
-- [ ] Cloud Run URL opens without sign-in and `/api/health` succeeds.
+- [x] Cloud Run URL opens without sign-in and `/api/health` succeeds.
 - [ ] Reset Demo works, a case opens, and attachments/evidence render.
 - [ ] GitHub is public and setup steps work from a fresh checkout.
 - [ ] No `.env`, API key, private email, or unrelated artifact is exposed.

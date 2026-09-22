@@ -1,0 +1,510 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "sdoc-clearview — shipping document verification",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1340,
+      570
+    ],
+    "repository": {
+      "url": "https://github.com/shengykok123-svg/sdoc-clearview",
+      "provider": "github",
+      "link_mode": "local-only",
+      "revision": "86fa25a431812aeafb99a6d11e9beceef1009ea2"
+    },
+    "views": [
+      {
+        "id": "pipeline",
+        "label": "The four engines",
+        "focus": [
+          "api",
+          "classify",
+          "extract",
+          "compare",
+          "decide"
+        ],
+        "note": "One email walks left to right; only the first two engines ever call a model."
+      },
+      {
+        "id": "trace",
+        "label": "How transparency works",
+        "focus": [
+          "classify",
+          "extract",
+          "compare",
+          "decide",
+          "trace",
+          "db",
+          "ui"
+        ],
+        "note": "Every engine emits one Trace. The UI renders those records, not a separate log."
+      },
+      {
+        "id": "routing",
+        "label": "Local first, cloud on doubt",
+        "focus": [
+          "classify",
+          "llm",
+          "router",
+          "ollama",
+          "openrouter"
+        ],
+        "note": "One protocol, three backends. Nothing leaves the host unless the router says so."
+      },
+      {
+        "id": "feedback",
+        "label": "Human corrections",
+        "focus": [
+          "ui",
+          "api",
+          "db",
+          "feedback"
+        ],
+        "note": "A correction becomes a naming-standard suggestion and a regression case."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "ui",
+      "type": "frontend",
+      "label": "Dashboard",
+      "sublabel": "React + Vite :5173",
+      "tag": "6 pages",
+      "pos": [
+        40,
+        190
+      ],
+      "size": [
+        170,
+        68
+      ],
+      "sources": [
+        {
+          "path": "frontend/src/App.tsx",
+          "label": "view router"
+        }
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "FastAPI",
+      "sublabel": "/api :8000 · orchestrates runs",
+      "pos": [
+        258,
+        190
+      ],
+      "size": [
+        170,
+        68
+      ],
+      "sources": [
+        {
+          "path": "backend/app/main.py",
+          "label": "HTTP surface"
+        },
+        {
+          "path": "backend/app/pipeline.py",
+          "line": 36,
+          "label": "process()"
+        }
+      ]
+    },
+    {
+      "id": "classify",
+      "type": "backend",
+      "label": "1 · Classify",
+      "sublabel": "email → 5 categories",
+      "pos": [
+        476,
+        190
+      ],
+      "size": [
+        170,
+        68
+      ],
+      "sources": [
+        {
+          "path": "backend/app/engines/classify.py",
+          "line": 31,
+          "label": "classify()"
+        }
+      ]
+    },
+    {
+      "id": "extract",
+      "type": "backend",
+      "label": "2 · Extract",
+      "sublabel": "7 fields + char offsets",
+      "tag": "88% parsed, no model",
+      "pos": [
+        694,
+        190
+      ],
+      "size": [
+        170,
+        68
+      ],
+      "sources": [
+        {
+          "path": "backend/app/engines/extract.py",
+          "line": 18,
+          "label": "extract()"
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "type": "backend",
+      "label": "3 · Compare",
+      "sublabel": "SI vs BL, rules only",
+      "tag": "no model",
+      "pos": [
+        912,
+        190
+      ],
+      "size": [
+        170,
+        68
+      ],
+      "sources": [
+        {
+          "path": "backend/app/engines/compare.py",
+          "line": 43,
+          "label": "compare()"
+        }
+      ]
+    },
+    {
+      "id": "decide",
+      "type": "backend",
+      "label": "4 · Decide",
+      "sublabel": "action + drafted reply",
+      "tag": "never sends",
+      "pos": [
+        1130,
+        190
+      ],
+      "size": [
+        170,
+        68
+      ],
+      "sources": [
+        {
+          "path": "backend/app/engines/decide.py",
+          "line": 24,
+          "label": "decide()"
+        }
+      ]
+    },
+    {
+      "id": "ollama",
+      "type": "external",
+      "label": "Ollama",
+      "sublabel": "qwen3.5:4b · offline",
+      "pos": [
+        260,
+        40
+      ],
+      "size": [
+        160,
+        58
+      ]
+    },
+    {
+      "id": "llm",
+      "type": "backend",
+      "label": "LLMClient",
+      "sublabel": "one protocol, three backends",
+      "tag": "mock is the default",
+      "pos": [
+        476,
+        40
+      ],
+      "size": [
+        170,
+        58
+      ],
+      "sources": [
+        {
+          "path": "backend/app/llm/base.py",
+          "line": 23,
+          "label": "Protocol"
+        }
+      ]
+    },
+    {
+      "id": "router",
+      "type": "security",
+      "label": "Confidence router",
+      "sublabel": "min logprob on the category",
+      "pos": [
+        790,
+        40
+      ],
+      "size": [
+        180,
+        58
+      ],
+      "sources": [
+        {
+          "path": "backend/app/router.py",
+          "line": 18,
+          "label": "should_escalate()"
+        }
+      ]
+    },
+    {
+      "id": "openrouter",
+      "type": "external",
+      "label": "OpenRouter",
+      "sublabel": "escalation target",
+      "pos": [
+        1090,
+        40
+      ],
+      "size": [
+        175,
+        58
+      ]
+    },
+    {
+      "id": "trace",
+      "type": "messagebus",
+      "label": "Trace",
+      "sublabel": "steps · why · model · ms",
+      "tag": "emitted by all four engines",
+      "pos": [
+        694,
+        340
+      ],
+      "size": [
+        180,
+        62
+      ],
+      "sources": [
+        {
+          "path": "backend/app/trace.py",
+          "line": 55,
+          "label": "Trace + Tracer"
+        }
+      ]
+    },
+    {
+      "id": "db",
+      "type": "database",
+      "label": "SQLite",
+      "sublabel": "runs · results · feedback",
+      "pos": [
+        476,
+        450
+      ],
+      "size": [
+        170,
+        62
+      ],
+      "sources": [
+        {
+          "path": "backend/app/db.py",
+          "label": "stdlib sqlite3"
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "type": "backend",
+      "label": "Feedback loop",
+      "sublabel": "corrections → two artefacts",
+      "pos": [
+        240,
+        450
+      ],
+      "size": [
+        175,
+        62
+      ],
+      "sources": [
+        {
+          "path": "backend/app/feedback.py",
+          "line": 27,
+          "label": "alias + regression"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ui-api",
+      "from": "ui",
+      "to": "api",
+      "label": "run · review · correct",
+      "variant": "emphasis",
+      "labelDy": -40
+    },
+    {
+      "id": "api-classify",
+      "from": "api",
+      "to": "classify",
+      "label": "one email at a time",
+      "labelDy": -40
+    },
+    {
+      "id": "classify-extract",
+      "from": "classify",
+      "to": "extract",
+      "label": "BL pairs only",
+      "labelDy": -40
+    },
+    {
+      "id": "extract-compare",
+      "from": "extract",
+      "to": "compare",
+      "label": "fields + evidence",
+      "labelDy": -40
+    },
+    {
+      "id": "compare-decide",
+      "from": "compare",
+      "to": "decide",
+      "label": "verdict per field",
+      "labelDy": -40
+    },
+    {
+      "id": "classify-llm",
+      "from": "classify",
+      "to": "llm",
+      "label": "prompt",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "labelDx": -46
+    },
+    {
+      "id": "extract-llm",
+      "from": "extract",
+      "to": "llm",
+      "label": "only what the parser missed",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "llm-ollama",
+      "from": "llm",
+      "to": "ollama",
+      "label": "local only",
+      "labelDy": -30
+    },
+    {
+      "id": "llm-router",
+      "from": "llm",
+      "to": "router",
+      "label": "reply + token logprobs"
+    },
+    {
+      "id": "router-cloud",
+      "from": "router",
+      "to": "openrouter",
+      "label": "escalate when unsure",
+      "variant": "security"
+    },
+    {
+      "id": "classify-trace",
+      "from": "classify",
+      "to": "trace",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "extract-trace",
+      "from": "extract",
+      "to": "trace",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "compare-trace",
+      "from": "compare",
+      "to": "trace",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "decide-trace",
+      "from": "decide",
+      "to": "trace",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "trace-db",
+      "from": "trace",
+      "to": "db",
+      "label": "stored with every result row"
+    },
+    {
+      "id": "db-api",
+      "from": "db",
+      "to": "api",
+      "label": "aggregated by /api/dashboard",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "db-feedback",
+      "from": "db",
+      "to": "feedback",
+      "label": "human corrections",
+      "labelDy": -30
+    },
+    {
+      "id": "feedback-ui",
+      "from": "feedback",
+      "to": "ui",
+      "label": "aliases + regression cases",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Transparency is the data path",
+      "items": [
+        "Every engine emits one Trace record",
+        "The UI renders those records, not a second log",
+        "Evidence offsets point back into the document"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Only two engines use a model",
+      "items": [
+        "Comparison and decision are pure rules",
+        "Every verdict names the rule behind it",
+        "88.8% of fields parsed without a model"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Local first, cloud on doubt",
+      "items": [
+        "Three backends behind one protocol",
+        "The mock needs no GPU and no API key",
+        "The router scores the category tokens alone"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "The loop closes through a person",
+      "items": [
+        "Drafts are never sent by the system",
+        "A correction becomes a naming standard",
+        "And a regression case, not training data"
+      ]
+    }
+  ]
+}

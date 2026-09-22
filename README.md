@@ -2,6 +2,14 @@
 
 **Shipping documents, clearer decisions.**
 
+## Team OhMyUTAR
+
+- KoK Yong Sheng
+- Chia Yue Sheng
+- Vianne Chong Huiyu
+- Cheah Ken Win
+- Chin Kah Wen
+
 SDOC Clearview is a human-in-the-loop operations workspace that classifies
 shipping emails, compares Shipping Instructions (SI) with draft Bills of Lading
 (BL), surfaces field-level discrepancies with source evidence, and prepares a
@@ -14,14 +22,13 @@ Built for the **Averis × Monash Hackathon 2026**.
 
 | Deliverable | Public link |
 |---|---|
-| Live prototype | _Add the Google Cloud Run URL_ |
-| Demo video | _Add the YouTube or Google Drive URL_ |
+| Live prototype | [Open SDOC Clearview](https://sdoc-clearview-821121433502.asia-southeast1.run.app) |
+| Demo video & pitch deck | [Open Google Drive folder](https://drive.google.com/drive/folders/1GywjgPJgQWtBzhEp45ecYdWzkm2S3ryf?usp=sharing) |
 | Slide deck / documentation | [Hackathon submission brief](docs/SUBMISSION.md) |
 | Deployment guide | [Google Cloud Run deployment](docs/CLOUD_RUN_DEPLOYMENT.md) |
 | Benchmark report | [Jev and Gemini benchmark](backend/benchmarks/results/latest.md) |
 
-> Before submitting the Google Form, replace both placeholder links and test
-> every link in an incognito browser.
+> Before submitting the Google Form, test every public link in an incognito browser.
 
 ## The problem
 
